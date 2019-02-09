@@ -1,0 +1,21 @@
+ body{
+    background-image: linear-gradient(to right top, #82a7e3, #9789c2, #9e6d99, #96576d, #814646);  
+    background-attachment: fixed;
+}
+
+.thumbnail img{
+    width: 100%;
+}
+.thumbnail{
+    padding: 0;
+}
+.thumbnail .caption-full{
+    padding: 9px;
+} 
+
+#delete-form{
+    display: inline;
+}
+.delete-form{
+    display: inline;
+}
