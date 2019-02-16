@@ -5,16 +5,34 @@ const express = require("express"),
     middleWare = require("../middleware");
 //Index Route- Show all campgrounds
 router.get("/",function(req,res){
+    var noMatch = null;
     //Fetch campgrounds from the database directly
-    Campground.find({},function(err,allCamps){
-        if(err){
-            console.log(err);
-        }
-        else
-        {
-            res.render("campground/index",{campgrounds:allCamps});
-        }
-    });
+    if(req.query.search){
+        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        Campground.find({name: regex},function(err,allCamps){
+            if(err){
+                console.log(err);
+            }
+            else
+            {
+                if(allCamps.length<1)
+                {
+                    noMatch = 'No campgrounds found for this search query';
+                }
+                res.render("campground/index",{campgrounds:allCamps,noMatch:noMatch});
+            }
+        });
+    }else{
+        Campground.find({},function(err,allCamps){
+            if(err){
+                console.log(err);
+            }
+            else
+            {
+                res.render("campground/index",{campgrounds:allCamps,noMatch:noMatch});
+            }
+        });
+    }
 });
 
 
@@ -84,4 +102,8 @@ router.delete("/:id",middleWare.checkCampgroundOwnership,(req,res)=>{
 });
 
 
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 module.exports = router;

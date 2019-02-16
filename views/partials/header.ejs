@@ -14,11 +14,35 @@
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <% if(!currentUser){ %>
-                            <li><a href="/login">Login</a></li>
-                            <li><a href="/register">Signup</a></li>
+                            <li>
+                                <a href="#">
+                                <div>
+                                    <form class="form-inline" action="/campgrounds" method="GET">
+                                        <div class="form-group">
+                                            <input type="text" name="search" placeholder="Search Camps" class="form-control">
+                                            <input type="submit" class="btn btn-default" value="Search">
+                                        </div>
+                                    </form>
+                                </div>
+                                </a>
+                            </li>
+                            <li><a style="padding-top: 20px;" href="/login">Login</a></li>
+                            <li><a style="padding-top: 20px;" href="/register">Signup</a></li>
                             <% }else{ %>
-                            <li><a href="#"><%= currentUser.username %></a></li>
-                            <li><a href="/logout">Logout</a></li>
+                                <li>
+                                    <a href="#">
+                                    <div>
+                                        <form class="form-inline" action="/campgrounds" method="GET">
+                                            <div class="form-group">
+                                                <input type="text" name="search" placeholder="Search Camps" class="form-control">
+                                                <input type="submit" class="btn btn-default" value="Search">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    </a>
+                                </li>
+                            <li><a style="padding-top: 20px;" href="#"><%= currentUser.username %></a></li>
+                            <li><a style="padding-top: 20px;" href="/logout">Logout</a></li>
                             <% } %>
                         </ul>
                     </div>

@@ -1,0 +1,19 @@
+<% include partials/header %>
+<div class="container">
+    <div class="row">
+        <div style="width: 30% ; margin: 25px auto;">
+            <form action="/forgot" method="POST">
+                <legend>Forgot Password</legend>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input class="form-control" type="text" name="email" placeholder="email">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Send Email</button>
+                </div>
+            </form>
+            <div style="align-content: center;"><a style="text-align: center;" href="/campgrounds">Go Back</a></div>
+        </div>
+    </div>
+</div>
+<% include partials/footer %>

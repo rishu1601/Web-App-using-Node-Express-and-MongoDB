@@ -1,8 +1,10 @@
 const express = require("express"),
     router    = express.Router(),
     passport  = require("passport"),
-    User      = require("../models/user");
-
+    User      = require("../models/user"),
+    async     = require("async"),
+    nodemailer= require("nodemailer"),
+    crypto    = require("crypto");
 
 router.get("/",function(req,res){
     res.render("landing");
@@ -49,6 +51,10 @@ router.get("/logout",(req,res)=>{
     req.logout();
     req.flash("success","Logged out successfully");
     res.redirect("/");
+});
+//Forgot password
+router.get("/forgot",(req,res)=>{
+    res.render("forgot");
 });
 
 
